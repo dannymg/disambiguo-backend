@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ambiguedades",
+  "info": {
+    "singularName": "ambiguedad",
+    "pluralName": "ambiguedades",
+    "displayName": "Ambiguedad"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "nombre": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": false
+    },
+    "descripcion": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "explicacion": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "tipoAmbiguedad": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "correcciones": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::correccion.correccion",
+      "mappedBy": "idAmbiguedad"
+    }
+  }
+}

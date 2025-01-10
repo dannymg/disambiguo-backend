@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "version_requisitos",
+  "info": {
+    "singularName": "version-requisito",
+    "pluralName": "version-requisitos",
+    "displayName": "VersionRequisito",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "requisito": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::requisito.requisito",
+      "mappedBy": "idVersionado"
+    },
+    "identificador": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "regex": "^(RF|RNF)-\\\\d{3}$",
+      "required": true
+    },
+    "numeroID": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer",
+      "required": true,
+      "max": 999,
+      "min": 1
+    },
+    "tipo": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "Funcional",
+        "No funcional"
+      ],
+      "required": true
+    },
+    "proyecto": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::proyecto.proyecto",
+      "inversedBy": "listaRequisitos"
+    }
+  }
+}
