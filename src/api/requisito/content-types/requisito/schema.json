@@ -96,6 +96,23 @@
       "relation": "manyToOne",
       "target": "api::version-requisito.version-requisito",
       "inversedBy": "requisito"
+    },
+    "creadorPor": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "email",
+      "required": true
+    },
+    "modificadoPor": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "email"
     }
   }
 }

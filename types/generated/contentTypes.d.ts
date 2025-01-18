@@ -460,6 +460,7 @@ export interface ApiAmbiguedadAmbiguedad extends Struct.CollectionTypeSchema {
 export interface ApiCorreccionCorreccion extends Struct.CollectionTypeSchema {
   collectionName: 'correcciones';
   info: {
+    description: '';
     displayName: 'Correccion';
     pluralName: 'correcciones';
     singularName: 'correccion';
@@ -474,6 +475,12 @@ export interface ApiCorreccionCorreccion extends Struct.CollectionTypeSchema {
   };
   attributes: {
     comentarioModif: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    creadoPor: Schema.Attribute.Email &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -505,6 +512,12 @@ export interface ApiCorreccionCorreccion extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::correccion.correccion'
     >;
+    modificadoPor: Schema.Attribute.Email &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     textoGenerado: Schema.Attribute.Text &
       Schema.Attribute.SetPluginOptions<{
@@ -553,6 +566,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
   collectionName: 'proyectos';
   info: {
+    description: '';
     displayName: 'Proyecto';
     pluralName: 'proyectos';
     singularName: 'proyecto';
@@ -575,6 +589,12 @@ export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
       }> &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 20;
+      }>;
+    creadoPor: Schema.Attribute.Email &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
       }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -624,10 +644,7 @@ export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    usuarios: Schema.Attribute.Relation<
-      'manyToMany',
-      'plugin::users-permissions.user'
-    >;
+    usuarios: Schema.Attribute.Relation<'manyToMany', 'api::usuario.usuario'>;
     version: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -667,6 +684,13 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::ambiguedad.ambiguedad'
     >;
+    creadorPor: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -703,6 +727,12 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::requisito.requisito'
     >;
+    modificadoPor: Schema.Attribute.Email &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     nombre: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -739,6 +769,94 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
         number
       > &
       Schema.Attribute.DefaultTo<1>;
+  };
+}
+
+export interface ApiRolRol extends Struct.CollectionTypeSchema {
+  collectionName: 'rols';
+  info: {
+    displayName: 'Rol';
+    pluralName: 'rols';
+    singularName: 'rol';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    esValido: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::rol.rol'>;
+    nombre: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    usuario: Schema.Attribute.Relation<'manyToOne', 'api::usuario.usuario'>;
+  };
+}
+
+export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
+  collectionName: 'usuarios';
+  info: {
+    description: '';
+    displayName: 'Usuario';
+    pluralName: 'usuarios';
+    singularName: 'usuario';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    clave: Schema.Attribute.Password & Schema.Attribute.Required;
+    correo: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::usuario.usuario'
+    > &
+      Schema.Attribute.Private;
+    nombreUsuario: Schema.Attribute.String & Schema.Attribute.Required;
+    proyectos: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::proyecto.proyecto'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    rol: Schema.Attribute.Relation<'oneToMany', 'api::rol.rol'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1288,10 +1406,6 @@ export interface PluginUsersPermissionsUser
         minLength: 6;
       }>;
     provider: Schema.Attribute.String;
-    proyectos: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::proyecto.proyecto'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
@@ -1326,6 +1440,8 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::proyecto.proyecto': ApiProyectoProyecto;
       'api::requisito.requisito': ApiRequisitoRequisito;
+      'api::rol.rol': ApiRolRol;
+      'api::usuario.usuario': ApiUsuarioUsuario;
       'api::version-requisito.version-requisito': ApiVersionRequisitoVersionRequisito;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

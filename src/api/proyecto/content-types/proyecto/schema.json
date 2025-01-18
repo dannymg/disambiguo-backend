@@ -4,7 +4,8 @@
   "info": {
     "singularName": "proyecto",
     "pluralName": "proyectos",
-    "displayName": "Proyecto"
+    "displayName": "Proyecto",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -75,17 +76,25 @@
       "default": true,
       "required": true
     },
-    "usuarios": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "proyectos"
-    },
     "listaRequisitos": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::version-requisito.version-requisito",
       "mappedBy": "proyecto"
+    },
+    "creadoPor": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "email"
+    },
+    "usuarios": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::usuario.usuario",
+      "inversedBy": "proyectos"
     }
   }
 }
