@@ -81,7 +81,9 @@
       "enum": [
         "Pendiente de revisión",
         "Revisado",
-        "Aprobado"
+        "Aprobado",
+        "Ambiguo",
+        "No ambiguo"
       ],
       "default": "Pendiente de revisión",
       "required": true
@@ -96,6 +98,15 @@
       "relation": "manyToOne",
       "target": "api::version-requisito.version-requisito",
       "inversedBy": "requisito"
+    },
+    "creadoPor": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "email",
+      "required": true
     }
   }
 }

@@ -667,6 +667,13 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::ambiguedad.ambiguedad'
     >;
+    creadoPor: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -678,7 +685,13 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
         };
       }>;
     estadoRevision: Schema.Attribute.Enumeration<
-      ['Pendiente de revisi\u00F3n', 'Revisado', 'Aprobado']
+      [
+        'Pendiente de revisi\u00F3n',
+        'Revisado',
+        'Aprobado',
+        'Ambiguo',
+        'No ambiguo',
+      ]
     > &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
