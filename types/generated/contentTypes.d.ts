@@ -553,6 +553,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
   collectionName: 'proyectos';
   info: {
+    description: '';
     displayName: 'Proyecto';
     pluralName: 'proyectos';
     singularName: 'proyecto';
@@ -575,6 +576,12 @@ export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
       }> &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 20;
+      }>;
+    creadoPor: Schema.Attribute.Email &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
       }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
