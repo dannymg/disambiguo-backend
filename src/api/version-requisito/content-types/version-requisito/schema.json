@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -29,7 +29,6 @@
         }
       },
       "type": "string",
-      "regex": "^(RF|RNF)-\\\\d{3}$",
       "required": true
     },
     "numeroID": {
@@ -51,8 +50,8 @@
       },
       "type": "enumeration",
       "enum": [
-        "Funcional",
-        "No funcional"
+        "FUNCIONAL",
+        "NO_FUNCIONAL"
       ],
       "required": true
     },

@@ -559,7 +559,7 @@ export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
     singularName: 'proyecto';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -662,7 +662,7 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
     singularName: 'requisito';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -692,13 +692,7 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
         };
       }>;
     estadoRevision: Schema.Attribute.Enumeration<
-      [
-        'Pendiente de revisi\u00F3n',
-        'Revisado',
-        'Aprobado',
-        'Ambiguo',
-        'No ambiguo',
-      ]
+      ['PENDIENTE', 'REVISADO', 'AMBIGUO', 'NO_AMBIGUO']
     > &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -706,7 +700,7 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }> &
-      Schema.Attribute.DefaultTo<'Pendiente de revisi\u00F3n'>;
+      Schema.Attribute.DefaultTo<'PENDIENTE'>;
     esVersionActiva: Schema.Attribute.Boolean &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -733,7 +727,7 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 70;
       }>;
-    prioridad: Schema.Attribute.Enumeration<['Alta', 'Media', 'Baja']> &
+    prioridad: Schema.Attribute.Enumeration<['ALTA', 'MEDIA', 'BAJA']> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -772,7 +766,7 @@ export interface ApiVersionRequisitoVersionRequisito
     singularName: 'version-requisito';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -815,7 +809,7 @@ export interface ApiVersionRequisitoVersionRequisito
       'oneToMany',
       'api::requisito.requisito'
     >;
-    tipo: Schema.Attribute.Enumeration<['Funcional', 'No funcional']> &
+    tipo: Schema.Attribute.Enumeration<['FUNCIONAL', 'NO_FUNCIONAL']> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

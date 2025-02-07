@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -43,9 +43,9 @@
       },
       "type": "enumeration",
       "enum": [
-        "Alta",
-        "Media",
-        "Baja"
+        "ALTA",
+        "MEDIA",
+        "BAJA"
       ],
       "required": true
     },
@@ -79,13 +79,12 @@
       },
       "type": "enumeration",
       "enum": [
-        "Pendiente de revisión",
-        "Revisado",
-        "Aprobado",
-        "Ambiguo",
-        "No ambiguo"
+        "PENDIENTE",
+        "REVISADO",
+        "AMBIGUO",
+        "NO_AMBIGUO"
       ],
-      "default": "Pendiente de revisión",
+      "default": "PENDIENTE",
       "required": true
     },
     "ambiguedad": {
