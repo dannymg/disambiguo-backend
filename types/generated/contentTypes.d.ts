@@ -601,13 +601,6 @@ export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<true>;
-    listaEspecificaciones: Schema.Attribute.JSON &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     listaRequisitos: Schema.Attribute.Relation<
       'oneToMany',
       'api::version-requisito.version-requisito'
@@ -617,6 +610,20 @@ export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::proyecto.proyecto'
     >;
+    objetivo: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    palabrasClave: Schema.Attribute.JSON &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     titulo: Schema.Attribute.String &
       Schema.Attribute.Required &

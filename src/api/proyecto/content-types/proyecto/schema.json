@@ -45,7 +45,7 @@
       "required": true,
       "minLength": 20
     },
-    "listaEspecificaciones": {
+    "palabrasClave": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -95,6 +95,15 @@
         }
       },
       "type": "email"
+    },
+    "objetivo": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text",
+      "required": true
     }
   }
 }
