@@ -699,7 +699,7 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
         };
       }>;
     estadoRevision: Schema.Attribute.Enumeration<
-      ['PENDIENTE', 'REVISADO', 'AMBIGUO', 'NO_AMBIGUO']
+      ['PENDIENTE', 'AMBIGUO', 'NO_AMBIGUO', 'VALIDADO']
     > &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -724,6 +724,12 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::requisito.requisito'
     >;
+    modificadoPor: Schema.Attribute.Email &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     nombre: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{

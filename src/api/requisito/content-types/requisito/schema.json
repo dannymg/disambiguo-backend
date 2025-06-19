@@ -80,9 +80,9 @@
       "type": "enumeration",
       "enum": [
         "PENDIENTE",
-        "REVISADO",
         "AMBIGUO",
-        "NO_AMBIGUO"
+        "NO_AMBIGUO",
+        "VALIDADO"
       ],
       "default": "PENDIENTE",
       "required": true
@@ -106,6 +106,14 @@
       },
       "type": "email",
       "required": true
+    },
+    "modificadoPor": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "email"
     }
   }
 }
