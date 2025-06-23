@@ -81,6 +81,8 @@
       "enum": [
         "PENDIENTE",
         "AMBIGUO",
+        "CORREGIDO",
+        "NO_CORREGIDO",
         "NO_AMBIGUO",
         "VALIDADO"
       ],

@@ -460,6 +460,7 @@ export interface ApiAmbiguedadAmbiguedad extends Struct.CollectionTypeSchema {
 export interface ApiCorreccionCorreccion extends Struct.CollectionTypeSchema {
   collectionName: 'correcciones';
   info: {
+    description: '';
     displayName: 'Correccion';
     pluralName: 'correcciones';
     singularName: 'correccion';
@@ -474,6 +475,12 @@ export interface ApiCorreccionCorreccion extends Struct.CollectionTypeSchema {
   };
   attributes: {
     comentarioModif: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    creadoPor: Schema.Attribute.Email &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -505,6 +512,12 @@ export interface ApiCorreccionCorreccion extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::correccion.correccion'
     >;
+    modificadoPor: Schema.Attribute.Email &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     textoGenerado: Schema.Attribute.Text &
       Schema.Attribute.SetPluginOptions<{
@@ -699,7 +712,14 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
         };
       }>;
     estadoRevision: Schema.Attribute.Enumeration<
-      ['PENDIENTE', 'AMBIGUO', 'NO_AMBIGUO', 'VALIDADO']
+      [
+        'PENDIENTE',
+        'AMBIGUO',
+        'CORREGIDO',
+        'NO_CORREGIDO',
+        'NO_AMBIGUO',
+        'VALIDADO',
+      ]
     > &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
