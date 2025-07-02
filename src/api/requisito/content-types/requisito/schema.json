@@ -42,11 +42,7 @@
         }
       },
       "type": "enumeration",
-      "enum": [
-        "ALTA",
-        "MEDIA",
-        "BAJA"
-      ],
+      "enum": ["ALTA", "MEDIA", "BAJA"],
       "required": true
     },
     "version": {
@@ -78,21 +74,15 @@
         }
       },
       "type": "enumeration",
-      "enum": [
-        "PENDIENTE",
-        "AMBIGUO",
-        "CORREGIDO",
-        "NO_CORREGIDO",
-        "NO_AMBIGUO",
-        "VALIDADO"
-      ],
+      "enum": ["PENDIENTE", "AMBIGUO", "CORREGIDO", "NO_CORREGIDO", "NO_AMBIGUO", "VALIDADO"],
       "default": "PENDIENTE",
       "required": true
     },
     "ambiguedad": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::ambiguedad.ambiguedad"
+      "target": "api::ambiguedad.ambiguedad",
+      "onDelete": "cascade"
     },
     "idVersionado": {
       "type": "relation",

@@ -20,7 +20,8 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::requisito.requisito",
-      "mappedBy": "idVersionado"
+      "mappedBy": "idVersionado",
+      "onDelete": "cascade"
     },
     "identificador": {
       "pluginOptions": {
@@ -49,10 +50,7 @@
         }
       },
       "type": "enumeration",
-      "enum": [
-        "FUNCIONAL",
-        "NO_FUNCIONAL"
-      ],
+      "enum": ["FUNCIONAL", "NO_FUNCIONAL"],
       "required": true
     },
     "proyecto": {

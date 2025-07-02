@@ -86,7 +86,8 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::version-requisito.version-requisito",
-      "mappedBy": "proyecto"
+      "mappedBy": "proyecto",
+      "onDelete": "cascade"
     },
     "creadoPor": {
       "pluginOptions": {

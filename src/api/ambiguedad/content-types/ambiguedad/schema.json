@@ -52,7 +52,8 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::correccion.correccion",
-      "mappedBy": "idAmbiguedad"
+      "mappedBy": "idAmbiguedad",
+      "onDelete": "cascade"
     }
   }
 }
