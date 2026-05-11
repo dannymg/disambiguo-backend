@@ -445,6 +445,10 @@ export interface ApiAmbiguedadAmbiguedad extends Struct.CollectionTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    requisito: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::requisito.requisito'
+    >;
     tipoAmbiguedad: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -715,9 +719,11 @@ export interface ApiRequisitoRequisito extends Struct.CollectionTypeSchema {
       [
         'PENDIENTE',
         'AMBIGUO',
-        'CORREGIDO',
-        'NO_CORREGIDO',
+        'NO_REVISADO',
         'NO_AMBIGUO',
+        'CORREGIDO',
+        'MODIFICADO',
+        'NO_VALIDADO',
         'VALIDADO',
       ]
     > &

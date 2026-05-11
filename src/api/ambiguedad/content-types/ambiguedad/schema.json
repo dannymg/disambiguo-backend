@@ -54,6 +54,12 @@
       "target": "api::correccion.correccion",
       "mappedBy": "idAmbiguedad",
       "onDelete": "cascade"
+    },
+    "requisito": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::requisito.requisito",
+      "inversedBy": "ambiguedad"
     }
   }
 }

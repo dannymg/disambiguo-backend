@@ -4,7 +4,14 @@ export default [
   'strapi::security',
   'strapi::cors',
   'strapi::poweredBy',
-  'strapi::query',
+
+  {
+    name: 'strapi::query',
+    config: {
+      arrayLimit: 200,
+    },
+  },
+
   'strapi::body',
   'strapi::session',
   'strapi::favicon',
